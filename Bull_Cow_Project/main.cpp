@@ -18,7 +18,7 @@ bool AskToPlayAgain();
 
 FBullCowGame BCGame;		//INSTATING NEW GAME
 
-int32 main()
+int main()
 {
 	bool bPlayAgain = false;
 	do
@@ -51,7 +51,7 @@ FText GetGuess()
 	//GET PLAYER GUESS
 	FText Guess = "";
 	std::cout << std::endl;
-	std::cout << "Try " << CurrentTry << ". " <<"Enter your guess:  ";
+	std::cout << "Try " << CurrentTry << ". " <<"Enter your guess: ";
 	std::getline(std::cin, Guess);
 	std::cout << std::endl;
 
@@ -77,11 +77,17 @@ void PlayGame()
 	//LOOP ASKER FOR GUESS
 	for (int32 count = 1; count <= MaxTries; count++)
 	{
-		FText guess = GetGuess();		//TODO MAKE LOOP CHECKING IF VALID
+		FText Guess = GetGuess();		//TODO MAKE LOOP CHECKING IF VALID
 
-		std::cout << "Your guess was: " << guess;
+		FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
+
+		std::cout << "Bulls = " << BullCowCount.Bulls;
+		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
+
+		std::cout << "Your guess was: " << Guess << std::endl;
 		std::cout << std::endl;
 	}
 
 	//TODO GET GAME SUMMARY
+}
 }
